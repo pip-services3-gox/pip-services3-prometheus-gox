@@ -13,13 +13,13 @@ import (
 // See: PrometheusCounters
 // See: PrometheusMetricsService
 type DefaultPrometheusFactory struct {
-	cbuild.Factory
+	*cbuild.Factory
 }
 
 // NewDefaultPrometheusFactory are create a new instance of the factory.
 func NewDefaultPrometheusFactory() *DefaultPrometheusFactory {
 	c := DefaultPrometheusFactory{}
-	c.Factory = *build.NewFactory()
+	c.Factory = build.NewFactory()
 
 	prometheusCountersDescriptor := cref.NewDescriptor("pip-services", "counters", "prometheus", "*", "1.0")
 	prometheusMetricsServiceDescriptor := cref.NewDescriptor("pip-services", "metrics-service", "prometheus", "*", "1.0")

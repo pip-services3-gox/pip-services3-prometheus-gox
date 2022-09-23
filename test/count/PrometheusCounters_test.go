@@ -1,6 +1,7 @@
 package test_count
 
 import (
+	"context"
 	"os"
 	"testing"
 
@@ -30,11 +31,11 @@ func TestPrometheusCounters(t *testing.T) {
 		"connection.port", port,
 		"connection.protocol", "http",
 	)
-	counters.Configure(config)
+	counters.Configure(context.Background(), config)
 
-	counters.Open("")
+	counters.Open(context.Background(), "")
 
-	defer counters.Close("")
+	defer counters.Close(context.Background(), "")
 
 	t.Run("Simple Counters", fixture.TestSimpleCounters)
 	t.Run("Measure Elapsed Time", fixture.TestMeasureElapsedTime)

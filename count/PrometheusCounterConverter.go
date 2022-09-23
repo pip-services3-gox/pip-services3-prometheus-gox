@@ -15,14 +15,15 @@ type TPrometheusCounterConverter struct {
 }
 
 // ToString method converts the given counters to a string that is returned by Prometheus metrics service.
-//   - counters  a list of counters to convert.
-//   - source    a source (context) name.
-//   - instance  a unique instance name (usually a host name).
+//	Parameters:
+//		- counters  a list of counters to convert.
+//		- source    a source (context) name.
+//		- instance  a unique instance name (usually a host name).
 // Returns string
 // string view of counter
-func (c *TPrometheusCounterConverter) ToString(counters []*ccount.Counter, source string, instance string) string {
+func (c *TPrometheusCounterConverter) ToString(counters []ccount.Counter, source string, instance string) string {
 
-	if counters == nil || len(counters) == 0 {
+	if len(counters) == 0 {
 		return ""
 	}
 
@@ -36,7 +37,6 @@ func (c *TPrometheusCounterConverter) ToString(counters []*ccount.Counter, sourc
 		case ccount.Increment:
 			builder += "# TYPE " + counterName + " gauge\n"
 			builder += counterName + labels + " " + cconv.StringConverter.ToString(counter.Count) + "\n"
-			break
 		case ccount.Interval:
 			builder += "# TYPE " + counterName + "_max gauge\n"
 			builder += counterName + "_max" + labels + " " + cconv.StringConverter.ToString(counter.Max) + "\n"
@@ -46,11 +46,9 @@ func (c *TPrometheusCounterConverter) ToString(counters []*ccount.Counter, sourc
 			builder += counterName + "_average" + labels + " " + cconv.StringConverter.ToString(counter.Average) + "\n"
 			builder += "# TYPE " + counterName + "_count gauge\n"
 			builder += counterName + "_count" + labels + " " + cconv.StringConverter.ToString(counter.Count) + "\n"
-			break
 		case ccount.LastValue:
 			builder += "# TYPE " + counterName + " gauge\n"
 			builder += counterName + labels + " " + cconv.StringConverter.ToString(counter.Last) + "\n"
-			break
 		case ccount.Statistics:
 			builder += "# TYPE " + counterName + "_max gauge\n"
 			builder += counterName + "_max" + labels + " " + cconv.StringConverter.ToString(counter.Max) + "\n"
@@ -60,18 +58,38 @@ func (c *TPrometheusCounterConverter) ToString(counters []*ccount.Counter, sourc
 			builder += counterName + "_average" + labels + " " + cconv.StringConverter.ToString(counter.Average) + "\n"
 			builder += "# TYPE " + counterName + "_count gauge\n"
 			builder += counterName + "_count" + labels + " " + cconv.StringConverter.ToString(counter.Count) + "\n"
-			break
 		case ccount.Timestamp: // Prometheus doesn't support non-numeric metrics
 			builder += "# TYPE " + counterName + " gauge\n" //" untyped\n"
 			builder += counterName + labels + " " + cconv.StringConverter.ToString(counter.Time.Unix()) + "\n"
-			break
 		}
 	}
 
 	return builder
 }
 
-func (c *TPrometheusCounterConverter) generateCounterLabel(counter *ccount.Counter, source string, instance string) string {
+func (c *TPrometheusCounterConverter) AtomicCountersToCounters(atomicCounters []*ccount.AtomicCounter) []ccount.Counter {
+	counters := make([]ccount.Counter, len(atomicCounters))
+
+	for _, atomicCounter := range atomicCounters {
+		counter := ccount.Counter{
+			Name:    atomicCounter.Name(),
+			Type:    atomicCounter.Type(),
+			Last:    atomicCounter.Last(),
+			Count:   atomicCounter.Count(),
+			Min:     atomicCounter.Min(),
+			Max:     atomicCounter.Max(),
+			Average: atomicCounter.Average(),
+			Time:    atomicCounter.Time(),
+		}
+
+		counters = append(counters, counter)
+	}
+
+	return counters
+
+}
+
+func (c *TPrometheusCounterConverter) generateCounterLabel(counter ccount.Counter, source string, instance string) string {
 
 	labels := make(map[string]string, 0)
 
@@ -96,7 +114,7 @@ func (c *TPrometheusCounterConverter) generateCounterLabel(counter *ccount.Count
 	}
 
 	builder := "{"
-	for key, _ := range labels {
+	for key := range labels {
 		if len(builder) > 1 {
 			builder += ","
 		}
@@ -107,8 +125,8 @@ func (c *TPrometheusCounterConverter) generateCounterLabel(counter *ccount.Count
 	return builder
 }
 
-func (c *TPrometheusCounterConverter) parseCounterName(counter *ccount.Counter) string {
-	if counter == nil && counter.Name == "" {
+func (c *TPrometheusCounterConverter) parseCounterName(counter ccount.Counter) string {
+	if counter.Name == "" {
 		return ""
 	}
 
@@ -128,7 +146,7 @@ func (c *TPrometheusCounterConverter) parseCounterName(counter *ccount.Counter) 
 	return result
 }
 
-func (c *TPrometheusCounterConverter) parseCounterLabels(counter *ccount.Counter, source string, instance string) interface{} {
+func (c *TPrometheusCounterConverter) parseCounterLabels(counter ccount.Counter, source string, instance string) interface{} {
 	labels := make(map[string]string, 0)
 
 	if source != "" {

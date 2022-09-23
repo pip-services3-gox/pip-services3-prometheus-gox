@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#375EAB">
+
+  <title>count - Go Documentation Server</title>
+
+<link type="text/css" rel="stylesheet" href="/lib/godoc/style.css">
+
+<script>window.initFuncs = [];</script>
+<script src="/lib/godoc/jquery.js" defer></script>
+
+
+
+<script>var goVersion = "go1.18.6";</script>
+<script src="/lib/godoc/godocs.js" defer></script>
+</head>
+<body>
+
+<div id='lowframe' style="position: fixed; bottom: 0; left: 0; height: 0; width: 100%; border-top: thin solid grey; background-color: white; overflow: auto;">
+...
+</div><!-- #lowframe -->
+
+<div id="topbar" class="wide"><div class="container">
+<div class="top-heading" id="heading-wide"><a href="/pkg/">Go Documentation Server</a></div>
+<div class="top-heading" id="heading-narrow"><a href="/pkg/">GoDoc</a></div>
+<a href="#" id="menu-button"><span id="menu-button-arrow">&#9661;</span></a>
+<form method="GET" action="/search">
+<div id="menu">
+
+<span class="search-box"><input type="search" id="search" name="q" placeholder="Search" aria-label="Search" required><button type="submit"><span><!-- magnifying glass: --><svg width="24" height="24" viewBox="0 0 24 24"><title>submit search</title><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/><path d="M0 0h24v24H0z" fill="none"/></svg></span></button></span>
+</div>
+</form>
+
+</div></div>
+
+
+
+<div id="page" class="wide">
+<div class="container">
+
+
+  <h1>
+    Package count
+    <span class="text-muted"></span>
+  </h1>
+
+
+
+
+
+
+
+<div id="nav"></div>
+
+
+<!--
+	Copyright 2009 The Go Authors. All rights reserved.
+	Use of this source code is governed by a BSD-style
+	license that can be found in the LICENSE file.
+-->
+<!--
+	Note: Static (i.e., not template-generated) href and id
+	attributes start with "pkg-" to make it impossible for
+	them to conflict with generated attributes (some of which
+	correspond to Go identifiers).
+-->
+
+	<script>
+	document.ANALYSIS_DATA = null;
+	document.CALLGRAPH = null;
+	</script>
+
+	
+		
+		<div id="short-nav">
+			<dl>
+			<dd><code>import "count"</code></dd>
+			</dl>
+			<dl>
+			<dd><a href="#pkg-overview" class="overviewLink">Overview</a></dd>
+			<dd><a href="#pkg-index" class="indexLink">Index</a></dd>
+			
+			
+			</dl>
+		</div>
+		<!-- The package's Name is printed as title by the top-level template -->
+		<div id="pkg-overview" class="toggleVisible">
+			<div class="collapsed">
+				<h2 class="toggleButton" title="Click to show Overview section">Overview ▹</h2>
+			</div>
+			<div class="expanded">
+				<h2 class="toggleButton" title="Click to hide Overview section">Overview ▾</h2>
+				
+				
+			</div>
+		</div>
+
+		<div id="pkg-index" class="toggleVisible">
+		<div class="collapsed">
+			<h2 class="toggleButton" title="Click to show Index section">Index ▹</h2>
+		</div>
+		<div class="expanded">
+			<h2 class="toggleButton" title="Click to hide Index section">Index ▾</h2>
+
+		<!-- Table of contents for API; must be named manual-nav to turn off auto nav. -->
+			<div id="manual-nav">
+			<dl>
+			
+			
+			
+			
+				
+				<dd><a href="#PrometheusCounters">type PrometheusCounters</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="#NewPrometheusCounters">func NewPrometheusCounters() *PrometheusCounters</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="#PrometheusCounters.Close">func (c *PrometheusCounters) Close(ctx context.Context, correlationId string) error</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="#PrometheusCounters.Configure">func (c *PrometheusCounters) Configure(ctx context.Context, config *cconf.ConfigParams)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="#PrometheusCounters.IsOpen">func (c *PrometheusCounters) IsOpen() bool</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="#PrometheusCounters.Open">func (c *PrometheusCounters) Open(ctx context.Context, correlationId string) (err error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="#PrometheusCounters.Save">func (c *PrometheusCounters) Save(cxt context.Context, counters []ccount.Counter) (err error)</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="#PrometheusCounters.SetReferences">func (c *PrometheusCounters) SetReferences(ctx context.Context, references cref.IReferences)</a></dd>
+				
+			
+				
+				<dd><a href="#TPrometheusCounterConverter">type TPrometheusCounterConverter</a></dd>
+				
+				
+					
+					<dd>&nbsp; &nbsp; <a href="#TPrometheusCounterConverter.AtomicCountersToCounters">func (c *TPrometheusCounterConverter) AtomicCountersToCounters(atomicCounters []*ccount.AtomicCounter) []ccount.Counter</a></dd>
+				
+					
+					<dd>&nbsp; &nbsp; <a href="#TPrometheusCounterConverter.ToString">func (c *TPrometheusCounterConverter) ToString(counters []ccount.Counter, source string, instance string) string</a></dd>
+				
+			
+			
+			</dl>
+			</div><!-- #manual-nav -->
+
+		
+
+		
+			<h3>Package files</h3>
+			<p>
+			<span style="font-size:90%">
+			
+				<a href="/src/count/PrometheusCounterConverter.go">PrometheusCounterConverter.go</a>
+			
+				<a href="/src/count/PrometheusCounters.go">PrometheusCounters.go</a>
+			
+			</span>
+			</p>
+		
+		</div><!-- .expanded -->
+		</div><!-- #pkg-index -->
+
+		
+
+		
+		
+		
+		
+			
+			
+			<h2 id="PrometheusCounters">type <a href="/src/count/PrometheusCounters.go?s=2436:2862#L55">PrometheusCounters</a>
+				<a class="permalink" href="#PrometheusCounters">&#xb6;</a>
+				
+				
+			</h2>
+			<p>
+PrometheusCounters performance counters that send their metrics to Prometheus service.
+</p>
+<p>
+The component is normally used in passive mode conjunction with PrometheusMetricsService.
+Alternatively when connection parameters are set it can push metrics to Prometheus PushGateway.
+</p>
+<pre>Configuration parameters:
+
+	- connection(s):
+		- discovery_key:         (optional) a key to retrieve the connection from connect.idiscovery.html IDiscovery
+		- protocol:              connection protocol: http or https
+		- host:                  host name or IP address
+		- port:                  port number
+		- uri:                   resource URI or connection string with all parameters in it
+	- options:
+		- retries:               number of retries (default: 3)
+		- connect_timeout:       connection timeout in milliseconds (default: 10 sec)
+		- timeout:               invocation timeout in milliseconds (default: 10 sec)
+
+References:
+
+	- *:logger:*:*:1.0         (optional) ILogger components to pass log messages
+	- *:counters:*:*:1.0         (optional) ICounters components to pass collected measurements
+	- *:discovery:*:*:1.0        (optional)  IDiscovery services to resolve connection
+</pre>
+<p>
+See:  RestService
+See:  CommandableHttpService
+</p>
+<p>
+Example:
+</p>
+<pre>ctx := context.Background()
+counters = NewPrometheusCounters();
+counters.Configure(ctx, cconf.NewConfigParamsFromTuples(
+    &#34;connection.protocol&#34;, &#34;http&#34;,
+    &#34;connection.host&#34;, &#34;localhost&#34;,
+    &#34;connection.port&#34;, 8080
+));
+
+counters.Open(&#34;123&#34;)
+
+counters.Increment(ctx, &#34;mycomponent.mymethod.calls&#34;);
+timing := counters.BeginTiming(ctx, &#34;mycomponent.mymethod.exec_time&#34;);
+    ...
+timing.EndTiming(ctx);
+
+counters.Dump(ctx);
+</pre>
+
+			<pre>type PrometheusCounters struct {
+    *<a href="/pkg/github.com/pip-services3-gox/pip-services3-components-gox/count/">ccount</a>.<a href="/pkg/github.com/pip-services3-gox/pip-services3-components-gox/count/#CachedCounters">CachedCounters</a>
+
+<span id="PrometheusCounters.Lock"></span>    Lock <a href="/pkg/sync/">sync</a>.<a href="/pkg/sync/#Mutex">Mutex</a>
+    <span class="comment">// contains filtered or unexported fields</span>
+}
+</pre>
+
+			
+
+			
+
+			
+			
+			
+
+			
+				
+				<h3 id="NewPrometheusCounters">func <a href="/src/count/PrometheusCounters.go?s=3007:3055#L75">NewPrometheusCounters</a>
+					<a class="permalink" href="#NewPrometheusCounters">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func NewPrometheusCounters() *<a href="#PrometheusCounters">PrometheusCounters</a></pre>
+				<p>
+NewPrometheusCounters is creates a new instance of the performance counters.
+Returns *PrometheusCounters
+pointer on new instance
+</p>
+
+				
+				
+			
+
+			
+				
+				<h3 id="PrometheusCounters.Close">func (*PrometheusCounters) <a href="/src/count/PrometheusCounters.go?s=6639:6722#L185">Close</a>
+					<a class="permalink" href="#PrometheusCounters.Close">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="#PrometheusCounters">PrometheusCounters</a>) Close(ctx <a href="/pkg/context/">context</a>.<a href="/pkg/context/#Context">Context</a>, correlationId <a href="/pkg/builtin/#string">string</a>) <a href="/pkg/builtin/#error">error</a></pre>
+				<p>
+Close method are closes component and frees used resources.
+</p>
+<pre>Parameters:
+	- ctx context.Context	operation context
+	- correlationId string (optional) transaction id to trace execution through call chain.
+</pre>
+<p>
+Returns error
+error or nil, if no errors occured.
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="PrometheusCounters.Configure">func (*PrometheusCounters) <a href="/src/count/PrometheusCounters.go?s=3562:3649#L92">Configure</a>
+					<a class="permalink" href="#PrometheusCounters.Configure">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="#PrometheusCounters">PrometheusCounters</a>) Configure(ctx <a href="/pkg/context/">context</a>.<a href="/pkg/context/#Context">Context</a>, config *<a href="/pkg/github.com/pip-services3-gox/pip-services3-commons-gox/config/">cconf</a>.<a href="/pkg/github.com/pip-services3-gox/pip-services3-commons-gox/config/#ConfigParams">ConfigParams</a>)</pre>
+				<p>
+Configure method are configures component by passing configuration parameters.
+</p>
+<pre>Parameters:
+	- ctx context.Context	operation context
+	- config   *cconf.ConfigParams
+</pre>
+<p>
+configuration parameters to be set.
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="PrometheusCounters.IsOpen">func (*PrometheusCounters) <a href="/src/count/PrometheusCounters.go?s=4997:5039#L124">IsOpen</a>
+					<a class="permalink" href="#PrometheusCounters.IsOpen">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="#PrometheusCounters">PrometheusCounters</a>) IsOpen() <a href="/pkg/builtin/#bool">bool</a></pre>
+				<p>
+IsOpen method are checks if the component is opened.
+Returns true if the component has been opened and false otherwise.
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="PrometheusCounters.Open">func (*PrometheusCounters) <a href="/src/count/PrometheusCounters.go?s=5320:5408#L134">Open</a>
+					<a class="permalink" href="#PrometheusCounters.Open">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="#PrometheusCounters">PrometheusCounters</a>) Open(ctx <a href="/pkg/context/">context</a>.<a href="/pkg/context/#Context">Context</a>, correlationId <a href="/pkg/builtin/#string">string</a>) (err <a href="/pkg/builtin/#error">error</a>)</pre>
+				<p>
+Open method are opens the component.
+</p>
+<pre>Parameters:
+	- ctx context.Context	operation context
+	- correlationId 	string (optional) transaction id to trace execution through call chain.
+</pre>
+<p>
+Returns error
+</p>
+<pre>error or nil, if no errors occured.
+</pre>
+
+				
+				
+				
+			
+				
+				<h3 id="PrometheusCounters.Save">func (*PrometheusCounters) <a href="/src/count/PrometheusCounters.go?s=7098:7191#L202">Save</a>
+					<a class="permalink" href="#PrometheusCounters.Save">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="#PrometheusCounters">PrometheusCounters</a>) Save(cxt <a href="/pkg/context/">context</a>.<a href="/pkg/context/#Context">Context</a>, counters []<a href="/pkg/github.com/pip-services3-gox/pip-services3-components-gox/count/">ccount</a>.<a href="/pkg/github.com/pip-services3-gox/pip-services3-components-gox/count/#Counter">Counter</a>) (err <a href="/pkg/builtin/#error">error</a>)</pre>
+				<p>
+Save method are saves the current counters measurements.
+</p>
+<pre>Parameters:
+	- ctx context.Context	operation context
+	- counters   []ccount.Counter current counters measurements to be saves.
+</pre>
+<p>
+Retruns error
+error or nil, if no errors occured.
+</p>
+
+				
+				
+				
+			
+				
+				<h3 id="PrometheusCounters.SetReferences">func (*PrometheusCounters) <a href="/src/count/PrometheusCounters.go?s=4346:4438#L108">SetReferences</a>
+					<a class="permalink" href="#PrometheusCounters.SetReferences">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="#PrometheusCounters">PrometheusCounters</a>) SetReferences(ctx <a href="/pkg/context/">context</a>.<a href="/pkg/context/#Context">Context</a>, references <a href="/pkg/github.com/pip-services3-gox/pip-services3-commons-gox/refer/">cref</a>.<a href="/pkg/github.com/pip-services3-gox/pip-services3-commons-gox/refer/#IReferences">IReferences</a>)</pre>
+				<p>
+SetReferences method are sets references to dependent components.
+</p>
+<pre>Parameters:
+	- ctx context.Context	operation context
+	- references  cref.IReferences
+</pre>
+<p>
+references to locate the component dependencies.
+</p>
+
+				
+				
+				
+			
+		
+			
+			
+			<h2 id="TPrometheusCounterConverter">type <a href="/src/count/PrometheusCounterConverter.go?s=431:475#L4">TPrometheusCounterConverter</a>
+				<a class="permalink" href="#TPrometheusCounterConverter">&#xb6;</a>
+				
+				
+			</h2>
+			
+			<pre>type TPrometheusCounterConverter struct {
+}
+</pre>
+
+			
+
+			
+				<p>
+PrometheusCounterConverter is helper class that converts performance counter values into
+a response from Prometheus metrics service.
+</p>
+
+				<pre>var <span id="PrometheusCounterConverter">PrometheusCounterConverter</span> <a href="#TPrometheusCounterConverter">TPrometheusCounterConverter</a> = <a href="#TPrometheusCounterConverter">TPrometheusCounterConverter</a>{}</pre>
+			
+
+			
+			
+			
+
+			
+
+			
+				
+				<h3 id="TPrometheusCounterConverter.AtomicCountersToCounters">func (*TPrometheusCounterConverter) <a href="/src/count/PrometheusCounterConverter.go?s=3162:3281#L60">AtomicCountersToCounters</a>
+					<a class="permalink" href="#TPrometheusCounterConverter.AtomicCountersToCounters">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="#TPrometheusCounterConverter">TPrometheusCounterConverter</a>) AtomicCountersToCounters(atomicCounters []*<a href="/pkg/github.com/pip-services3-gox/pip-services3-components-gox/count/">ccount</a>.<a href="/pkg/github.com/pip-services3-gox/pip-services3-components-gox/count/#AtomicCounter">AtomicCounter</a>) []<a href="/pkg/github.com/pip-services3-gox/pip-services3-components-gox/count/">ccount</a>.<a href="/pkg/github.com/pip-services3-gox/pip-services3-components-gox/count/#Counter">Counter</a></pre>
+				
+				
+				
+				
+			
+				
+				<h3 id="TPrometheusCounterConverter.ToString">func (*TPrometheusCounterConverter) <a href="/src/count/PrometheusCounterConverter.go?s=802:914#L14">ToString</a>
+					<a class="permalink" href="#TPrometheusCounterConverter.ToString">&#xb6;</a>
+					
+					
+				</h3>
+				<pre>func (c *<a href="#TPrometheusCounterConverter">TPrometheusCounterConverter</a>) ToString(counters []<a href="/pkg/github.com/pip-services3-gox/pip-services3-components-gox/count/">ccount</a>.<a href="/pkg/github.com/pip-services3-gox/pip-services3-components-gox/count/#Counter">Counter</a>, source <a href="/pkg/builtin/#string">string</a>, instance <a href="/pkg/builtin/#string">string</a>) <a href="/pkg/builtin/#string">string</a></pre>
+				<p>
+ToString method converts the given counters to a string that is returned by Prometheus metrics service.
+</p>
+<pre>Parameters:
+	- counters  a list of counters to convert.
+	- source    a source (context) name.
+	- instance  a unique instance name (usually a host name).
+</pre>
+<p>
+Returns string
+string view of counter
+</p>
+
+				
+				
+				
+			
+		
+	
+
+	
+
+
+
+
+
+
+
+<div id="footer">
+Build version go1.18.6.<br>
+Except as <a href="https://developers.google.com/site-policies#restrictions">noted</a>,
+the content of this page is licensed under the
+Creative Commons Attribution 3.0 License,
+and code is licensed under a <a href="/LICENSE">BSD license</a>.<br>
+<a href="https://golang.org/doc/tos.html">Terms of Service</a> |
+<a href="https://www.google.com/intl/en/policies/privacy/">Privacy Policy</a>
+</div>
+
+</div><!-- .container -->
+</div><!-- #page -->
+</body>
+</html>
