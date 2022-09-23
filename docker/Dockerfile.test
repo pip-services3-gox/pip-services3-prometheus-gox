@@ -12,8 +12,6 @@ WORKDIR /app
 # Copy the entire project
 COPY . .
 
-COPY .. ..
-
 # Check and download dependencies
 RUN go mod tidy
 
