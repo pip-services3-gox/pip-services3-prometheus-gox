@@ -5,9 +5,9 @@ This module is a part of the [Pip.Services](http://pipservices.org) polyglot mic
 The module contains components for working with meters in the Prometheus service. The PrometheusCounters and PrometheusMetricsService components allow you to work both in client mode through PushGateway, and as a service.
 
 The module contains the following packages:
-- [**Build**](https://godoc.org/github.com/pip-services3-gox/pip-services3-prometheus-gox/build) - the default factories for constructing components.
-- [**Count**](https://godoc.org/github.com/pip-services3-gox/pip-services3-prometheus-gox/count) - components of counters (metrics) with sending data to Prometheus via PushGateway
-- [**Services**](https://godoc.org/github.com/pip-services3-gox/pip-services3-prometheus-gox/services) - components of the service for reading counters (metrics) by the Prometheus service
+- **Build** - the default factories for constructing components.
+- **Count** - components of counters (metrics) with sending data to Prometheus via PushGateway
+- **Services** - components of the service for reading counters (metrics) by the Prometheus service
 
 <a name="links"></a> Quick links:
 
@@ -27,7 +27,7 @@ go get -u github.com/pip-services3-gox/pip-services3-prometheus-gox@latest
 ## Develop
 
 For development you shall install the following prerequisites:
-* Golang v1.12+
+* Golang v1.18+
 * Visual Studio Code or another IDE of your choice
 * Docker
 * Git
